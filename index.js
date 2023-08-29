@@ -41,6 +41,16 @@ document.addEventListener('DOMContentLoaded' , function() {
         }
     }
 
+    function clearGrid(){
+        const gridCells = document.querySelectorAll("#gridContainer .gridCell");
+
+        // Empty Contents of Grid
+        gridCells.forEach(cell => {
+            cell.style.backgroundColor = '';
+            cell.innerText = '';   
+        });
+    }
+
     const changeDimensionButton = document.createElement("button");
     changeDimensionButton.textContent = "Change Grid Dimensions";
     changeDimensionButton.style.position = "absolute";
@@ -48,9 +58,18 @@ document.addEventListener('DOMContentLoaded' , function() {
     changeDimensionButton.style.transform = "translate(-50%, -50%)";
     changeDimensionButton.addEventListener("click", promptForDimensions);
 
-    document.body.insertBefore(changeDimensionButton, document.getElementById("gridContainer"));
+    const clearButton = document.createElement("button");
+    clearButton.textContent = "Clear Grid";
+    clearButton.style.position = "absolute";
+    clearButton.style.left = "50%";
+    clearButton.style.transform = "translate(-50%, 100%)";
+    clearButton.addEventListener("click", clearGrid);
 
-    updateGrid(3, 3);
+    document.body.insertBefore(changeDimensionButton, document.getElementById("gridContainer"));
+    document.body.insertBefore(clearButton, document.getElementById("gridContainer"));
+
+    // Initial Instance
+    updateGrid(3);
 
     document.body.appendChild(gridContainer);
 
