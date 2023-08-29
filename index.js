@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded' , function() {
     const gridContainer = document.querySelector('#gridContainer')
 
     function promptForDimensions() {
-        const size = prompt("Enter the number of rows and columns you want:", "4");
-    
+        let size = prompt("Enter the number of rows and columns you want: (3-100)", "3");
+
         if (size) {
             updateGrid(size);
         }
@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded' , function() {
     function updateGrid(dim){
         // Style grid container
         gridContainer.style.display = "grid";
+        gridContainer.style.width = "600px";
+        gridContainer.style.height = "600px";
         gridContainer.style.gridTemplateColumns = `repeat(${dim}, 1fr)`; // creates grid
         gridContainer.style.gap = "0px"; // no spacing between squares
         gridContainer.style.position = "absolute";
@@ -24,11 +26,9 @@ document.addEventListener('DOMContentLoaded' , function() {
         // Create buttons and add to grid
         for (let i = 0; i < dim ** 2; i++){
             const square = document.createElement('div')
+            square.classList.add("gridCell");
 
             // Style each square
-            square.style.width = "60px"
-            square.style.height = "60px"
-            square.style.lineheight = "60px"
             square.style.border = "1px solid black";
             square.style.cursor = "pointer";
             square.style.textAlign = "center";
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded' , function() {
 
     document.body.insertBefore(changeDimensionButton, document.getElementById("gridContainer"));
 
-    updateGrid(4, 4);
+    updateGrid(3, 3);
 
     document.body.appendChild(gridContainer);
 
